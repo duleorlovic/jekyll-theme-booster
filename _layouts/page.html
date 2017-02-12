@@ -1,5 +1,27 @@
 ---
-layout: default
+layout: page_or_post
 ---
+{% assign page_category = page.path | split: '/' | first %}
+{% for post in site.posts %}
+  {% if post.categories contains page_category %}
+    {% assign show_sidebar = true %}
+    {% break %}
+  {% endif %}
+{% else %}
+  {% assign show_sidebar = false %}
+{% endfor %}
 
-{{ content }}
+<div class="row">
+  {% if show_sidebar %}
+    <div class="col-md-8">
+      {{ content }}
+    </div>
+    <div class="col-md-4">
+      {% include default/sidebar_posts_list.html %}
+    </div>
+  {% else %}
+    <div class="col-md-12">
+      {{ content }}
+    </div>
+  {% endif %}
+</div>

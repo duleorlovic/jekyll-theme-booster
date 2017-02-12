@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+# use local theme gem for example
+gem "jekyll-theme-booster", path: "../"

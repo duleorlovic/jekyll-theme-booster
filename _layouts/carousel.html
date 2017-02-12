@@ -1,0 +1,99 @@
+---
+layout: default
+---
+{% comment %}
+When you use this layout you need to define *carousel_paths*
+
+---
+layout: carousel
+carousel_paths:
+  - index.md
+  - contact.md
+---
+{% endcomment %}
+{% assign page_or_posts = site.pages | concat: site.posts %}
+{% if page.carousel_link_text %}
+  {% assign carousel_link_text = page.carousel_link_text %}
+{% else %}
+  {% assign carousel_link_text = 'Read More' %}
+{% endif %}
+<div class="fh5co-slider">
+  <div class="owl-carousel owl-carousel-fullwidth">
+    {% for carousel_path in page.carousel_paths %}
+      {% for page_or_post in page_or_posts %}
+      {% if carousel_path == page_or_post.path %}
+        <div class="item" style="background-image:url('{{ page_or_post.image }}')">
+          <div class="fh5co-overlay"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="fh5co-owl-text-wrap">
+                  <div class="fh5co-owl-text text-center to-animate">
+                    <a href="{{ page_or_post.url }}">
+                      <h1 class="fh5co-lead">{{ page_or_post.title }}</h1>
+                    </a>
+                    <h2 class="fh5co-sub-lead">{{ page_or_post.description }}
+                      <a href="{{ page_or_post.url }}">{{ carousel_link_text }}</a>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+<div id="fh5co-main">
+  <div id="fh5co-features">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="fh5co-section-lead">
+          {{ page.main_text }}
+</h2>
+          <h3 class="fh5co-section-sub-lead">{{ page.main_description }}</h3>
+        </div>
+        <div class="fh5co-spacer fh5co-spacer-md"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fh5co-spacer fh5co-spacer-lg"></div>
+  <div class="container" id="fh5co-products">
+    <div class="row text-left">
+      <div class="col-md-8">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+
+  <div id="fh5co-clients">
+    <div class="container">
+      <div class="row">
+        {% for client in page.clients %}
+          <div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-client-logo
+            text-center to-animate"><img src="{{ client.image }}" alt="{{ client.text }}" class="img-responsive"></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="fh5co-bg-section" style="background-image: url('{{ page.bottom_image }}'); background-attachment: fixed;">
+    <div class="fh5co-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="fh5co-hero-wrap">
+            <div class="fh5co-hero-intro text-center">
+              <h1 class="fh5co-lead"><span class="quo">&ldquo;</span>{{ page.bottom_text }} <span class="quo">&rdquo;</span></h1>
+              <!--<p class="author">&mdash; <cite>Steve Jobs</cite></p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

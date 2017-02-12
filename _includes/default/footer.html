@@ -1,0 +1,72 @@
+{% assign page_or_posts = site.pages | concat: site.posts %}
+<footer id="fh5co-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="fh5co-footer-widget">
+          <h2 class="fh5co-footer-logo">{{ site.title | escape }}</h2>
+          <p>{{ site.description | escape }}</p>
+        </div>
+        <div class="fh5co-footer-widget">
+          <ul class="fh5co-social">
+            {% if site.facebook_url %}
+              <li><a href="{{ site.facebook_url}}"><i class="icon-facebook"></i></a></li>
+            {% endif %}
+            {% if site.twitter_url %}
+              <li><a href="{{ site.twitter_url}}"><i class="icon-twitter"></i></a></li>
+            {% endif %}
+            {% if site.instagram_url %}
+              <li><a href="{{ site.instagram_url}}"><i class="icon-instagram"></i></a></li>
+            {% endif %}
+            {% if site.linkedin_url %}
+              <li><a href="{{ site.linkedin_url}}"><i class="icon-linkedin"></i></a></li>
+            {% endif %}
+            {% if site.youtube_url %}
+              <li><a href="{{ site.youtube_url}}"><i class="icon-youtube"></i></a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      {% case site.data.footer_links.size %}
+      {% when 1 %}
+        {% assign col_class = 'col-md-6' %}
+      {% when 2 %}
+        {% assign col_class = 'col-md-3' %}
+      {% when 3 %}
+        {% assign col_class = 'col-md-2' %}
+      {% else %}
+        {% assign col_class = 'col-md-1' %}
+      {% endcase %}
+
+      {% for footer_link_key_value in site.data.footer_links %}
+        {% for key in footer_link_key_value[0] %}
+
+          <div class="{{ col_class }} col-sm-6">
+            <div class="fh5co-footer-widget top-level">
+              <h4 class="fh5co-footer-lead ">{{ key }}</h4>
+              <ul>
+                {% for footer_link in footer_link_key_value[1] %}
+                  {% for page_or_post in page_or_posts %}
+                    {% if page_or_post.path == footer_link.path %}
+                      <li><a href="{{ page_or_post.url }}">{{ footer_link.title }} </a></li>
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="visible-sm-block clearfix"></div>
+        {% endfor %}
+      {% endfor %}
+
+    </div>
+
+    <div class="row fh5co-row-padded fh5co-copyright">
+      <div class="col-md-5">
+        <p><small>&copy; {{ site.title }}
+        </small></p>
+      </div>
+    </div>
+  </div>
+</footer>

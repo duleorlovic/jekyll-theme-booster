@@ -1,0 +1,39 @@
+{% comment %}
+galery_image_list requies page.galery_image_list with title and image
+
+---
+galery_image_list:
+  - image: /assets/images/image_1.jpg
+    title: First
+  - image: /assets/images/image_2.jpg
+    title: Second title
+  - image: /assets/images/image 3.jpg
+    title: Third title
+---
+{% include galery_image_list.html %}
+{% endcomment %}
+
+{% case page.galery_image_list.size %}
+  {% when 1 %}
+    {% assign col_class = 'col-md-12' %}
+  {% when 2 %}
+    {% assign col_class = 'col-md-6' %}
+  {% when 3 %}
+    {% assign col_class = 'col-md-4' %}
+  {% when 4 %}
+    {% assign col_class = 'col-md-3' %}
+  {% else %}
+    {% assign col_class = 'col-md-2' %}
+{% endcase %}
+<div class="row">
+  {% for galery_image in page.galery_image_list %}
+    <div class="{{ col_class }}">
+      <p><a href="{{ galery_image.image }}" class="image-popup">
+          <img src="{{ galery_image.image }}" alt="{{ galery_image.title }}" class="img-responsive img-rounded">
+      </a></p>
+      <div class="text-center">
+        {{ galery_image.title }}
+      </div>
+    </div>
+  {% endfor %}
+</div>

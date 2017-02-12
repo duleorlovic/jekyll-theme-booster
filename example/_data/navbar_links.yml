@@ -1,0 +1,6 @@
+- title: Home
+  path: index.md
+- title: Contact
+  path: contact.md
+- title: Product Type 1
+  path: product_type_1/index.md

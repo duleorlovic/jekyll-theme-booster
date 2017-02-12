@@ -1,0 +1,29 @@
+{% comment %}
+sidebar_posts_list
+automatically detect page category (based on path) and add sidebar list for all
+posts that contains that category
+It is not intended to include this file manually.
+{% endcomment %}
+{% assign page_category = page.path | split: '/' | first %}
+<div class="fh5co-sidebox">
+  <h3 class="fh5co-sidebox-lead">Posts</h3>
+  <ul class="fh5co-post">
+    {% for post in site.posts %}
+      {% if post.categories contains page_category %}
+        <li>
+          <a href="{{ post.url }}">
+            <div class="fh5co-post-media">
+              {% if post.image %}
+                <img src="{{ post.image }}" alt="{{ post.image_alt }}">
+              {% endif %}
+            </div>
+            <div class="fh5co-post-blurb">
+              {{ post.title }}
+              <span class="fh5co-post-meta">{{ post.date | date: '%d-%m-%Y' }}</span>
+            </div>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
