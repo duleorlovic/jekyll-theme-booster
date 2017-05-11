@@ -3,6 +3,7 @@ pages:
     path: contact.md
   - title: Product Type 1
     path: product_type_1/index.md
+
 posts:
   - title: New serie
     path: product_type_1/_posts/2017-02-01-new-series-of-product-type-1.md

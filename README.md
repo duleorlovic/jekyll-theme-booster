@@ -26,14 +26,20 @@ Or install it yourself as:
 
 # Usage
 
-Look inside `example` folder for examples of what you need to define
+Look inside `example` folder for example site so you know what you need to
+define in your project. At least you should update:
 
 * `_config.yml` for site data
-* `_data/nabar_links.yml` is used to define links in main navigation bar at top
-* `_data/footer_links.yml`
+* pages (`index.md` and `contact.md`) and posts inside folders
+  (`product_type_1`)
+* `_data/nabar_links.yml` should define links in main navigation bar at top
+* `_data/footer_links.yml` similar to navbar, but contains pages and posts (you
+  can call it Products and News).
+* index page can have carousel layout, for which you need to define text and
+  client images
 
-You can use components from `_includes` folder. Check their source how to use
-it.
+* you can use other components from `_includes` folder. Check their source how
+  to use it.
 
 Tips:
 
@@ -55,13 +61,25 @@ Bug reports and pull requests are welcome on GitHub at <https://github.com/duleo
 
 To set up your environment to develop this theme, run `bundle install`.
 
-There is example site inside `/example` folder. To rtest it run
+There is example site inside `/example` folder. To test it run
 
 ~~~
 rake example
+# open browser
+google-chrome http://127.0.0.1:4005
 ~~~
 
-Only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be released.
+And
+
+Only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be
+released.
+
+To build and install gem run
+
+~~~
+gem build jekyll-theme-booster.gemspec
+gem install jekyll-theme-booster-0.1.0.gem
+~~~
 
 ## License
 

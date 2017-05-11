@@ -3,12 +3,15 @@ layout: default
 ---
 {% comment %}
 When you use this layout you need to define *carousel_paths*
+It can be page or post. Image and text will be used from that page definition,
+here we need only path.
 
 ---
 layout: carousel
 carousel_paths:
   - index.md
   - contact.md
+  - products/_posts/2017-01-01-first.md
 ---
 {% endcomment %}
 {% assign page_or_posts = site.pages | concat: site.posts %}
